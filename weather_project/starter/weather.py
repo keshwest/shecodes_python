@@ -1,6 +1,5 @@
 import csv
 from datetime import datetime
-from unittest import result
 
 DEGREE_SYBMOL = u"\N{DEGREE SIGN}C"
 
@@ -27,7 +26,6 @@ def convert_date(iso_string):
     """
     format_date = datetime.strptime(iso_string, "%Y-%m-%dT%H:%M:%S%z")
     return format_date.strftime("%A %d %B %Y")
-    #Correct!
 
 
 def convert_f_to_c(temp_in_farenheit):
@@ -41,7 +39,6 @@ def convert_f_to_c(temp_in_farenheit):
     temp_in_farenheit = float(temp_in_farenheit)
     caculate_temp = (temp_in_farenheit - 32) * (5/9)
     return (round(caculate_temp, 1))
-    #Correct!
 
 def calculate_mean(weather_data):
     """Calculates the mean value from a list of numbers.
@@ -53,13 +50,12 @@ def calculate_mean(weather_data):
     """
     # for i in range(0, len(weather_data)):
     #     weather_data[i] = float(weather_data[i])
-    # return sum(weather_data) / len(weather_data)
+    # return sum(weather_data) / len(weather_data) # worked for individual test but didn't during the generate weather summary FCTN. ??
     sum = 0
     for temp in weather_data:
         sum = sum + float(temp)
         mean = sum / len(weather_data)
     return mean
-    #Correct!
 
 def load_data_from_csv(csv_file):
     """Reads a csv file and stores the data in a list.
@@ -76,7 +72,6 @@ def load_data_from_csv(csv_file):
             if line != [] and index != 0:
                 data.append([line[0],int(line[1]),int(line[2])])
     return data
-    #correct!
 
 
 def find_min(weather_data):
@@ -114,8 +109,6 @@ def find_max(weather_data):
     position = weather_data.reverse() # reverse list
     position = len(weather_data) - weather_data.index(temp_max) -1 #i dentify position
     return temp_max, position
-
-    #ValueError: max() arg is an empty sequence
 
 
 def generate_summary(weather_data):
@@ -178,23 +171,3 @@ def generate_daily_summary(weather_data):
         result += f"  Maximum Temperature: {format_temperature(convert_f_to_c(item[2]))}\n\n"
 
     return result
-
-#     ---- Friday 02 July 2021 ----
-#   Minimum Temperature: 9.4°C
-#   Maximum Temperature: 19.4°C
-
-# ---- Saturday 03 July 2021 ----
-#   Minimum Temperature: 13.9°C
-#   Maximum Temperature: 20.0°C
-
-# ---- Sunday 04 July 2021 ----
-#   Minimum Temperature: 13.3°C
-#   Maximum Temperature: 16.7°C
-
-# ---- Monday 05 July 2021 ----
-#   Minimum Temperature: 12.8°C
-#   Maximum Temperature: 16.1°C
-
-# ---- Tuesday 06 July 2021 ----
-#   Minimum Temperature: 11.7°C
-#   Maximum Temperature: 16.7°C
